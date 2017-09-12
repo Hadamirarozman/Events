@@ -3,9 +3,21 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home
-
+    <ion-title>
+      Home
     </ion-title>
   </ion-navbar>
 </ion-header>
-      
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>Date</ion-label>
+    <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date" (ionChange)="getData()"></ion-datetime>
+  </ion-item>
+  <ion-list *ngIf="events">
+   <ion-item *ngFor="let event of events">
+   <h2>{{event.eventname}}</h2>
+   <p class="item-description">{{event.venue}}</p>
+   </ion-item>
+ </ion-list>
+</ion-content>
