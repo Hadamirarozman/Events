@@ -10,14 +10,13 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-label>Date</ion-label>
-    <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="date" (ionChange)="getData()"></ion-datetime>
-  </ion-item>
-  <ion-list *ngIf="events">
+  <ion-list>
    <ion-item *ngFor="let event of events">
-   <h2>{{event.eventname}}</h2>
-   <p class="item-description">{{event.venue}}</p>
+   <h2>Event : {{event.eventname}}</h2>
+   <p class="item-description">Venue : {{event.venue}}</p>
+   <p >Event Date : {{event.eventdate}}</p>   
+   <p >Event Details : {{event.description}}</p>
+   <button ion-button block (click) = "addData()">Join Event</button>
    </ion-item>
  </ion-list>
 </ion-content>

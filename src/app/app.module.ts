@@ -1,21 +1,51 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
-import { HttpModule } from '@angular/http';
 
+//local storage 
+import { SQLite } from '@ionic-native/sqlite';
+
+
+//app pages and component
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { EventlistPage} from '../pages/eventlist/eventlist';
 import { WelcomePage } from '../pages/welcome/welcome';
-import { SignupPage } from '../pages/signup/signup';
-import { LoginPage } from '../pages/login/login';
 import { MapsPage } from '../pages/maps/maps';
 import { DiscoverPage } from '../pages/discover/discover';
-import { SearchPage } from '../pages/search/search';
+import { TabsPage } from '../pages/tabs/tabs';
+import { CalendarPage } from '../pages/calendar/calendar';
+import { PopupEventPage } from '../pages/popup-event/popup-event';
 
+
+//aws cognito auth pages
+import {ControlPanelComponent} from "../pages/controlpanel/controlpanel";
+import {LoginComponent} from "../pages/auth/login.component";
+import {RegisterComponent} from "../pages/auth/register.component";
+import {ConfirmRegistrationComponent} from "../pages/auth/confirmRegistration.component";
+import {ResendCodeComponent} from "../pages/auth/resendCode.component";
+import {ForgotPasswordStep1Component} from "../pages/auth/forgotPassword1.component";
+import {ForgotPasswordStep2Component} from "../pages/auth/forgotPassword2.component";
+import {LogoutComponent} from "../pages/auth/logout.component";
+
+
+// aws cognito services
+import {CognitoUtil} from "../providers/cognito.service";
+import {AwsUtil} from "../providers/aws.service";
+import {EventsService} from "../providers/events.service";
+import {UserLoginService} from "../providers/userLogin.service";
+import {UserParametersService} from "../providers/userParameters.service";
+import {UserRegistrationService} from "../providers/userRegistration.service";
+
+
+//plugins
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { NgCalendarModule } from 'ionic2-calendar';
+import { FilterProvider } from '../providers/filter/filter';
+import { Geolocation } from '@ionic-native/geolocation';
+import { HttpModule } from '@angular/http';
+
 
 @NgModule({
   declarations: [
@@ -23,34 +53,64 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     EventlistPage,
     WelcomePage,
-    SignupPage,
-    LoginPage,
     MapsPage,
     DiscoverPage,
-    SearchPage
+    TabsPage,
+    CalendarPage,
+    PopupEventPage,
+    LoginComponent,
+    LogoutComponent,
+    RegisterComponent,
+    ConfirmRegistrationComponent,
+    ResendCodeComponent,
+    ForgotPasswordStep1Component,
+    ForgotPasswordStep2Component,
+    ControlPanelComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    NgCalendarModule,
     IonicModule.forRoot(MyApp),
   ],
+
+
+
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     EventlistPage,
     WelcomePage,
-    SignupPage,
-    LoginPage,
     MapsPage,
     DiscoverPage,
-    SearchPage
+    PopupEventPage,
+    TabsPage,
+    CalendarPage,
+    LoginComponent,
+    LogoutComponent,
+    RegisterComponent,
+    ConfirmRegistrationComponent,
+    ResendCodeComponent,
+    ForgotPasswordStep1Component,
+    ForgotPasswordStep2Component,
+    ControlPanelComponent
   ],
+
+
   providers: [
     StatusBar,
     SplashScreen,
+    AwsUtil,
+    UserLoginService,
+    UserParametersService,
+    UserRegistrationService,
+    EventsService,
+    CognitoUtil,
+    SQLite,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FilterProvider
   ]
 })
 export class AppModule {}

@@ -1,274 +1,45 @@
 <ion-header>
-  <ion-navbar no-border-bottom>
-    <ion-title>
-      Events
-    </ion-title>
-  </ion-navbar>
-
-  <ion-toolbar no-border-top>
-    <ion-segment [(ngModel)]="event">
-      <ion-segment-button value="food">
-        Asian Cuisine
-      </ion-segment-button>
-      <ion-segment-button value="living">
-        Western
-      </ion-segment-button>
-      <ion-segment-button value="outdoor">
-        Desserts 
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <div [ngSwitch]="event">
-    <ion-list *ngSwitchCase="'food'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-puppy-1.jpg">
-        </ion-thumbnail>
-        <h2>Event</h2>
-        <p>
-          Concert lompat lompat
-        </p>
-        <ion-row no-padding>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start (click)="presentLoadingText()">
-            <ion-icon name='pin'></ion-icon>
-            Location
-            </button>
-            
-          </ion-col>
-          <ion-col >
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='paper-plane'></ion-icon>
-              Join 
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='share-alt'></ion-icon>
-              Share
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-puppy-2.jpg">
-        </ion-thumbnail>
-        <h2>Oscar</h2>
-        <p>
-          Concert lompat lompat
-        </p>
-        <ion-row no-padding>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='pin'></ion-icon>
-            Location
-            </button>
-            
-          </ion-col>
-          <ion-col >
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='paper-plane'></ion-icon>
-              Join 
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='share-alt'></ion-icon>
-              Share
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-puppy-4.jpg">
-        </ion-thumbnail>
-        <h2>Zoey</h2>
-        <p>
-          Concert lompat lompat
-        </p>
-        <ion-row no-padding>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='pin'></ion-icon>
-            Location
-            </button>
-            
-          </ion-col>
-          <ion-col >
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='paper-plane'></ion-icon>
-              Join 
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='share-alt'></ion-icon>
-              Share
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-puppy-3.jpg">
-        </ion-thumbnail>
-        <h2>Otto</h2>
-        <p>
-          Concert lompat lompat
-        </p>
-        <ion-row no-padding>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='pin'></ion-icon>
-            Location
-            </button>
-            
-          </ion-col>
-          <ion-col >
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='paper-plane'></ion-icon>
-              Join 
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='share-alt'></ion-icon>
-              Share
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-    </ion-list>
-
-    <ion-list *ngSwitchCase="'living'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-kitten-1.jpg">
-        </ion-thumbnail>
-        <h2>Luna</h2>
-        <p>
-          Concert lompat lompat
-        </p>
-        <ion-row no-padding>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='pin'></ion-icon>
-            Location
-            </button>
-            
-          </ion-col>
-          <ion-col >
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='paper-plane'></ion-icon>
-              Join 
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='share-alt'></ion-icon>
-              Share
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-kitten-3.jpg">
-        </ion-thumbnail>
-        <h2>Milo</h2>
-        <p>
-          Concert lompat lompat
-        </p>
-        <ion-row no-padding>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='pin'></ion-icon>
-            Location
-            </button>
-            
-          </ion-col>
-          <ion-col >
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='paper-plane'></ion-icon>
-              Join 
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='share-alt'></ion-icon>
-              Share
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-kitten-4.jpg">
-        </ion-thumbnail>
-        <h2>Bandit</h2>
-        <p>
-          Concert lompat lompat
-        </p>
-        <ion-row no-padding>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='pin'></ion-icon>
-            Location
-            </button>
-            
-          </ion-col>
-          <ion-col >
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='paper-plane'></ion-icon>
-              Join 
-            </button>
-          </ion-col>
-          <ion-col>
-            <button ion-button clear small color="primary" icon-start>
-              <ion-icon name='share-alt'></ion-icon>
-              Share
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-kitten-2.jpg">
-        </ion-thumbnail>
-        <h2>Nala</h2>
-      </ion-item>
-    </ion-list>
-
-    <ion-list *ngSwitchCase="'outdoor'">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-duckling-1.jpg">
-        </ion-thumbnail>
-        <h2>Daffy</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-duckling-2.jpg">
-        </ion-thumbnail>
-        <h2>Huey</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-duckling-3.jpg">
-        </ion-thumbnail>
-        <h2>Dewey</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/img/thumbnail-duckling-4.jpg">
-        </ion-thumbnail>
-        <h2>Louie</h2>
-      </ion-item>
-    </ion-list>
-  </div>
-</ion-content>
+    <ion-navbar no-border-bottom>
+      <ion-title>
+        Events
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <div >
+      <ion-list *ngIf="events" >
+        <ion-item *ngFor="let event of events" >
+          <ion-thumbnail item-start>
+            <img src="media">
+          </ion-thumbnail>
+          <h2>{{event.eventname}}</h2>
+          <p>
+            Event Details : {{event.description}}
+          </p>
+          <ion-row no-padding>
+            <ion-col>
+              <button ion-button clear small color="primary" icon-start (click)="presentLoadingText()">
+              <ion-icon name='pin'></ion-icon>
+              Location
+              
+              </button>
+              
+            </ion-col>
+            <ion-col >
+              <button ion-button clear small color="primary" icon-start>
+                <ion-icon name='paper-plane'></ion-icon>
+                Join 
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button clear small color="primary" icon-start>
+                <ion-icon name='share-alt'></ion-icon>
+                Share
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
