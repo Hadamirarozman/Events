@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
+    <button ion-button menuToggle >
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
@@ -11,12 +11,20 @@
 
 <ion-content padding>
   <ion-list>
-   <ion-item *ngFor="let event of events">
-   <h2>Event : {{event.eventname}}</h2>
-   <p class="item-description">Venue : {{event.venue}}</p>
-   <p >Event Date : {{event.eventdate}}</p>   
-   <p >Event Details : {{event.description}}</p>
-   <button ion-button block (click) = "addData()">Join Event</button>
-   </ion-item>
+    <ion-item *ngFor="let event of events">
+      <div class="event-img">
+        <img [src]="event.poster">
+      </div>
+      <div class="event-info">
+        <p>Venue : {{event.venue}}</p>
+        <p>Date : {{event.eventdate}}</p>
+      </div>
+      <div class="event-detail">
+        <h2>{{event.eventname}}</h2>
+        <h3>{{event.description}}</h3>
+        <button ion-button block (click) = "addData()">Join Event</button>
+      </div>
+    </ion-item>
  </ion-list>
+
 </ion-content>

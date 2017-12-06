@@ -23,6 +23,19 @@
 
 function getModelName () {
     var modelName = window.qnx.webplatform.device.modelName;
+<<<<<<< HEAD
+    // Pre 10.2 (meaning Z10 or Q10)
+    if (typeof modelName === 'undefined') {
+        if (window.screen.height === 720 && window.screen.width === 720) {
+            if (window.matchMedia('(-blackberry-display-technology: -blackberry-display-oled)').matches) {
+                modelName = 'Q10';
+            } else {
+                modelName = 'Q5';
+            }
+        } else if ((window.screen.height === 1280 && window.screen.width === 768) ||
+                   (window.screen.height === 768 && window.screen.width === 1280)) {
+            modelName = 'Z10';
+=======
     //Pre 10.2 (meaning Z10 or Q10)
     if (typeof modelName === "undefined") {
         if (window.screen.height === 720 && window.screen.width === 720) {
@@ -34,6 +47,7 @@ function getModelName () {
         } else if ((window.screen.height === 1280 && window.screen.width === 768) ||
                    (window.screen.height === 768 && window.screen.width === 1280)) {
             modelName = "Z10";
+>>>>>>> master
         } else {
             modelName = window.qnx.webplatform.deviceName;
         }
@@ -43,18 +57,39 @@ function getModelName () {
 }
 
 function getUUID () {
+<<<<<<< HEAD
+    var uuid = '';
+    try {
+        // Must surround by try catch because this will throw if the app is missing permissions
+        uuid = window.qnx.webplatform.device.devicePin;
+    } catch (e) {
+        // DO Nothing
+=======
     var uuid = "";
     try {
         //Must surround by try catch because this will throw if the app is missing permissions
         uuid = window.qnx.webplatform.device.devicePin;
     } catch (e) {
         //DO Nothing
+>>>>>>> master
     }
     return uuid;
 }
 
 module.exports = {
     getDeviceInfo: function (success, fail, args, env) {
+<<<<<<< HEAD
+        var result = new PluginResult(args, env);
+        var modelName = getModelName();
+        var uuid = getUUID();
+        var info = {
+            manufacturer: 'BlackBerry',
+            platform: 'blackberry10',
+            version: window.qnx.webplatform.device.scmBundle,
+            model: modelName,
+            uuid: uuid
+        };
+=======
         var result = new PluginResult(args, env),
             modelName = getModelName(),
             uuid = getUUID(),
@@ -65,6 +100,7 @@ module.exports = {
                 model: modelName,
                 uuid: uuid
             };
+>>>>>>> master
 
         result.ok(info);
     }

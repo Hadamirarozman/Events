@@ -1,9 +1,39 @@
 page-welcome {
-    .button-bottom{
-        position: absolute;
-        bottom: 0%;
-        width: 100%;
-        margin: auto 
+	text-align: center;
 
-        }
+	img {
+		margin-top: 25%;
+	}
+
+	h2 {
+		font-size: 1.8rem;
+		font-weight: 300;
+		line-height: 2.4rem;
+		padding: 0 30px;
+		margin-top: 35%;
+	}
+
+  .button-bottom{
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+
+    .button {
+    	margin-bottom: 10px;
+    	padding: 25px;
+    	box-shadow: 0 2px 5px #ccc;
+
+    	&:last-child {
+    		margin-bottom: 0;
+    	}
+
+    	span {
+    		text-transform: uppercase;
+    		font-size: 1.4rem;
+    	}
+    }
+  }
 }

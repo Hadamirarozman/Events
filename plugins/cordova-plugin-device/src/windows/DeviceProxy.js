@@ -21,6 +21,18 @@
 
 /* global Windows, createUUID */
 
+<<<<<<< HEAD
+var ROOT_CONTAINER = '{00000000-0000-0000-FFFF-FFFFFFFFFFFF}';
+var DEVICE_CLASS_KEY = '{A45C254E-DF1C-4EFD-8020-67D146A850E0},10';
+var DEVICE_CLASS_KEY_NO_SEMICOLON = '{A45C254E-DF1C-4EFD-8020-67D146A850E0}10';
+var ROOT_CONTAINER_QUERY = 'System.Devices.ContainerId:="' + ROOT_CONTAINER + '"';
+var HAL_DEVICE_CLASS = '4d36e966-e325-11ce-bfc1-08002be10318';
+var DEVICE_DRIVER_VERSION_KEY = '{A8B865DD-2E3D-4094-AD97-E593A70C75D6},3';
+
+module.exports = {
+
+    getDeviceInfo: function (win, fail, args) {
+=======
 var ROOT_CONTAINER = "{00000000-0000-0000-FFFF-FFFFFFFFFFFF}";
 var DEVICE_CLASS_KEY = "{A45C254E-DF1C-4EFD-8020-67D146A850E0},10";
 var DEVICE_CLASS_KEY_NO_SEMICOLON = "{A45C254E-DF1C-4EFD-8020-67D146A850E0}10";
@@ -31,6 +43,7 @@ var DEVICE_DRIVER_VERSION_KEY = "{A8B865DD-2E3D-4094-AD97-E593A70C75D6},3";
 module.exports = {
 
     getDeviceInfo:function(win, fail, args) {
+>>>>>>> master
 
         // deviceId aka uuid, stored in Windows.Storage.ApplicationData.current.localSettings.values.deviceId
         var deviceId;
@@ -38,8 +51,12 @@ module.exports = {
         var localSettings = Windows.Storage.ApplicationData.current.localSettings;
         if (localSettings.values.deviceId) {
             deviceId = localSettings.values.deviceId;
+<<<<<<< HEAD
+        } else {
+=======
         }
         else {
+>>>>>>> master
             // App-specific hardware id could be used as uuid, but it changes if the hardware changes...
             try {
                 var ASHWID = Windows.System.Profile.HardwareIdentification.getPackageSpecificToken(null).id;
@@ -48,22 +65,37 @@ module.exports = {
                 // Couldn't get the hardware UUID
                 deviceId = createUUID();
             }
+<<<<<<< HEAD
+            // ...so cache it per-install
+            localSettings.values.deviceId = deviceId;
+        }
+
+=======
             //...so cache it per-install
             localSettings.values.deviceId = deviceId;
         }
 
 
+>>>>>>> master
         var userAgent = window.clientInformation.userAgent;
         // this will report "windows" in windows8.1 and windows phone 8.1 apps
         // and "windows8" in windows 8.0 apps similar to cordova.js
         // See https://github.com/apache/cordova-js/blob/master/src/windows/platform.js#L25
+<<<<<<< HEAD
+        var devicePlatform = userAgent.indexOf('MSAppHost/1.0') === -1 ? 'windows' : 'windows8';
+=======
         var devicePlatform = userAgent.indexOf("MSAppHost/1.0") == -1 ? "windows" : "windows8";
+>>>>>>> master
         var versionString = userAgent.match(/Windows (?:Phone |NT )?([0-9.]+)/)[1];
 
         var deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
         // Running in the Windows Simulator is a remote session.
         // Running in the Windows Phone Emulator has the systemProductName set to "Virtual"
+<<<<<<< HEAD
+        var isVirtual = Windows.System.RemoteDesktop.InteractiveSession.isRemote || deviceInfo.systemProductName === 'Virtual';
+=======
         var isVirtual = Windows.System.RemoteDesktop.InteractiveSession.isRemote || deviceInfo.systemProductName == "Virtual";
+>>>>>>> master
         var manufacturer = deviceInfo.systemManufacturer;
         var model = deviceInfo.systemProductName;
 
@@ -73,6 +105,25 @@ module.exports = {
                                 [DEVICE_DRIVER_VERSION_KEY, DEVICE_CLASS_KEY],
                                 ROOT_CONTAINER_QUERY)
         .then(function (rootDevices) {
+<<<<<<< HEAD
+            for (var i = 0; i < rootDevices.length; i++) {
+                var rootDevice = rootDevices[i];
+                if (!rootDevice.properties) continue;
+                if (rootDevice.properties[DEVICE_CLASS_KEY_NO_SEMICOLON] === HAL_DEVICE_CLASS) {
+                    versionString = rootDevice.properties[DEVICE_DRIVER_VERSION_KEY];
+                    break;
+                }
+            }
+
+            setTimeout(function () {
+                win({ platform: devicePlatform,
+                    version: versionString,
+                    uuid: deviceId,
+                    isVirtual: isVirtual,
+                    model: model,
+                    manufacturer: manufacturer});
+            }, 0);
+=======
                 for (var i = 0; i < rootDevices.length; i++) {
                     var rootDevice = rootDevices[i];
                     if (!rootDevice.properties) continue;
@@ -90,9 +141,14 @@ module.exports = {
                           model: model,
                           manufacturer:manufacturer});
                 }, 0);
+>>>>>>> master
         });
     }
 
 }; // exports
 
+<<<<<<< HEAD
+require('cordova/exec/proxy').add('Device', module.exports);
+=======
 require("cordova/exec/proxy").add("Device", module.exports);
+>>>>>>> master

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { ModalController, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 
 import * as moment from 'moment'; // import momentjs
@@ -8,7 +8,6 @@ import * as moment from 'moment'; // import momentjs
 import {LoggedInCallback, CognitoUtil, Callback} from "../../providers/cognito.service";
 import {EventsService} from "../../providers/events.service";
 import {UserLoginService} from "../../providers/userLogin.service";
-
 
 //operator Api
 import 'rxjs/add/operator/map';
@@ -30,14 +29,27 @@ export class GetAccess {
   
 })
 export class HomePage implements LoggedInCallback{
-  public date: string;
+  
+  public date;
   public events;
   private todaydate = moment().format("YYYY-MM-DD");
   public getAccess: GetAccess = new GetAccess();
  
 
-  constructor( private http: Http, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController, public nav: NavController,  public eventService: EventsService, public cognitoUtil: CognitoUtil, public userService: UserLoginService )
+  constructor( 
+    private http: Http, 
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public loadingCtrl: LoadingController, 
+    public nav: NavController,  
+    public eventService: EventsService, 
+    public cognitoUtil: CognitoUtil, 
+    public userService: UserLoginService,
+    public modalCtrl: ModalController
+  
+  )
   {
+
     console.log('home');
     console.log('date: ', this.todaydate);
     this.userService.isAuthenticated(this);
@@ -69,7 +81,9 @@ export class HomePage implements LoggedInCallback{
         //this.nav.setRoot(TabsPage);
         this.cognitoUtil.getIdToken(new IdTokenCallback(this));
         console.log('token from dashboard here: ', this.getAccess.idToken);
-    }else{
+    }
+    
+    else{
       this.eventService.sendLoggedInEvent();
       //this.nav.setRoot(ControlPanelComponent);
       this.nav.setRoot(LoginComponent);
@@ -78,12 +92,16 @@ export class HomePage implements LoggedInCallback{
 
 
 //push popout join event
-  addData() {
-    this.navCtrl.push(PopupEventPage, {param1:'{{event.eventname}}' , param2:'{{event.venue}}', param3:'{{event.eventdate}}' }
-    
-    
-    );
+  addData(event) {
+
+   
+    this.navCtrl.push(PopupEventPage,
+    {
+      firstpassed: "event.eventname",
+      secondpassed: "event.eventdate"
+    });
   }
+
 
 }
 

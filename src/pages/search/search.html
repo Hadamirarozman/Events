@@ -1,21 +1,24 @@
-
 <ion-header>
-
   <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-    <ion-title>Search</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Search
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      {{ item }}
-    </ion-item>
-  </ion-list>
+<ion-content>
+  <ion-toolbar >
+<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+</ion-toolbar>
+  <div >
+    <ion-list *ngIf="events" >
+      <ion-item *ngFor="let event of events" >
+        <h2>{{event.eventname}}</h2>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

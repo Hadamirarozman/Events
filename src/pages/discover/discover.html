@@ -8,13 +8,20 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-<ion-content>
-  <div >
-    <ion-list *ngIf="events" >
-      <ion-item *ngFor="let event of events" >
-        <h2>{{event.eventname}}</h2>
-      </ion-item>
-    </ion-list>
-  </div>
-</ion-content>
+
+<ion-content padding>
+  
+    <ion-card (click) = "loadCategories()" *ngFor="let event of events" >
+      <div class="card-image">
+        <img [src]="event.image">
+      </div>
+      <div class="event-info">
+        <h2>{{event.categoryname}}</h2>
+        <p>View More</p>
+      </div>
+    </ion-card>
+  
+    
+
+  
+  </ion-content>

@@ -1,19 +1,20 @@
 
 <ion-header>
-  
-    <ion-navbar>
-      <ion-title>welcome</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
-  
-  
-  <ion-content padding>
-    <img src="https://d15mj6e6qmt1na.cloudfront.net/i/27345095/1500x375/c" class="logo"/>
-    <h1> Welcome to Astro </h1>
-    <div>Discover some interesting things</div>
-    <div class = "button-bottom">
-    <button ion-button block class="marginTop" (click)="signup()">Signup</button>
-    <button ion-button block color="lightprimary" (click)="login()">Login</button></div>
-  </ion-content>
-  
+
+  <!-- <ion-navbar>
+    <ion-title>welcome</ion-title>
+  </ion-navbar> -->
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <img src="assets/images/astroradio.png" alt="">
+  <h2>Find events near you, organize a new event and find what interest you in the near future!</h2>
+  <div class="button-bottom">
+    <button ion-button block color="astro" (click)="login()">Login</button>
+    <span>Don't have account? <a (click)="signup()">Signup</a> here!</span>
+  </div>
+
+</ion-content>

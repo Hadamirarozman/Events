@@ -9,18 +9,19 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding class="auth-page">
+
+    <img src="assets/images/astroradio-sm.png" alt="">
+
     <ion-list>
         <ion-item>
             <ion-label floating>Confirmation Code</ion-label>
             <ion-input [(ngModel)]="confirmationCode" type="text"></ion-input>
         </ion-item>
 
-        <ion-item>
-            <button ion-button block large outline (click)="onConfirmRegistration()">Confirm</button>
-        </ion-item>
-
     </ion-list>
+
+    <button ion-button block color="astro" (click)="onConfirmRegistration()">Confirm</button>
 
     <ion-grid>
         <ion-row>

@@ -1,73 +1,99 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Http, Headers } from '@angular/http';
+import * as moment from 'moment'; // import momentjs
+import {LoggedInCallback, CognitoUtil, Callback} from "../../providers/cognito.service";
+import {EventsService} from "../../providers/events.service";
+import { LoginComponent } from "../../pages/auth/login.component";
+import { UserLoginService } from "../../providers/userLogin.service";
+import { ModalController } from 'ionic-angular';
 
 
-@IonicPage()
+export class GetAccess {
+  public idToken: string;
+}
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html',
 })
-export class SearchPage {
-  items;
+export class SearchPage  implements LoggedInCallback {
+  public date: string;
+  public events;
+  private todaydate = moment().format("YYYY-MM-DD");
+  public getAccess: GetAccess = new GetAccess();
+ 
   
-    constructor() {
-      this.initializeItems();
-    }
+
+  constructor(
+    public modalCtrl: ModalController, 
+    private http: Http, 
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public loadingCtrl: LoadingController,
+    public eventService: EventsService, 
+    public cognitoUtil: CognitoUtil, 
+    public userService: UserLoginService, 
+    public nav: NavController)
+
+  {
+
+    
+  console.log('home');
+  console.log('date: ', this.todaydate);
+  this.userService.isAuthenticated(this);
+  let headers = new Headers(
+    {
+        'Content-Type': 'application/json', 
+        'Access-Control-Allow-Origin': '*',  
+        'Authorization': this.getAccess.idToken
+    });
+  this.http.get('https://g5mhbciwo5.execute-api.ap-southeast-1.amazonaws.com/stage/showevents?eventdate='+ this.todaydate, {headers:headers})
+  .map(res => res.json())
+  .subscribe(
+      data => {
+        this.events = data;
+      },
+      // Jika ada error
+      err => console.log("error is "+err),
+      // Jika request complete
+      () => console.log('read events Complete '+ this.events)
+  );
+
+}
   
-    initializeItems() {
-      this.items = [
-        'Amsterdam',
-        'Bogota',
-        'Buenos Aires',
-        'Cairo',
-        'Dhaka',
-        'Edinburgh',
-        'Geneva',
-        'Genoa',
-        'Glasglow',
-        'Hanoi',
-        'Hong Kong',
-        'Islamabad',
-        'Istanbul',
-        'Jakarta',
-        'Kiel',
-        'Kyoto',
-        'Le Havre',
-        'Lebanon',
-        'Lhasa',
-        'Lima',
-        'London',
-        'Los Angeles',
-        'Madrid',
-        'Manila',
-        'New York',
-        'Olympia',
-        'Oslo',
-        'Panama City',
-        'Peking',
-        'Philadelphia',
-        'San Francisco',
-        'Seoul',
-        'Taipeh',
-        'Tel Aviv',
-        'Tokio',
-        'Uelzen',
-        'Washington'
-      ];
-    }
-  
-    getItems(ev) {
-      // Reset items back to all of the items
-      this.initializeItems();
-  
-      // set val to the value of the ev target
-      var val = ev.target.value;
-  
-      // if the value is an empty string don't filter the items
-      if (val && val.trim() != '') {
-        this.items = this.items.filter((item) => {
-          return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-        })
-      }
-    }
+isLoggedInCallback(message: string, isLoggedIn: boolean) {
+  console.log("The user is logged in: " + isLoggedIn);
+  if (isLoggedIn) {
+      this.eventService.sendLoggedInEvent();
+      //this.nav.setRoot(ControlPanelComponent);
+      //this.nav.setRoot(TabsPage);
+      this.cognitoUtil.getIdToken(new IdTokenCallback(this));
+      console.log('token from dashboard here: ', this.getAccess.idToken);
+  }else{
+    this.eventService.sendLoggedInEvent();
+    //this.nav.setRoot(ControlPanelComponent);
+    this.nav.setRoot(LoginComponent);
   }
+}
+
+
+  presentModal() {
+    let modal = this.modalCtrl.create(SearchPage);
+    modal.present();
+  }
+}
+export class IdTokenCallback implements Callback {
+  constructor(public home: SearchPage) {
+
+  }
+
+  callback() {
+
+  }
+
+  callbackWithParam(result) {
+      this.home.getAccess.idToken = result;
+      
+  }
+}
+

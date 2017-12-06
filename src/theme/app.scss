@@ -1,0 +1,161 @@
+// Mixin
+@import "mixin";
+
+// LOGIN AND OTHER AUTH PAGE
+
+.auth-page {
+
+	text-align: center;
+
+	.list {
+
+		&-ios {
+
+			.item {
+
+				&-ios {
+					margin-bottom: 15px;
+					padding: 0 10px;
+				}
+
+				&-block {
+
+					&:first-child, &:last-child {
+						border: 0 !important;
+
+						.item-inner {
+							border-bottom: 0.55px solid #c8c7cc;
+						}
+					}
+
+					.item-inner {
+						padding: 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+// Header / Top Bar
+.header {
+	
+	&-ios, &-md {
+
+		.toolbar {
+
+			&-ios, &-md {
+
+				.bar-button-default-ios, .bar-button-default-md {
+					color: $color-astro;
+				}
+
+				.toolbar-background-ios, .toolbar-background-md {
+					border-color: transparent;
+					background-color: $color-white;
+				}
+
+				.toolbar-title-ios {
+					color: $color-astro;
+					text-transform: uppercase;
+					font-weight: 400;
+					font-size: 1.4rem;
+				}
+
+				.toolbar-title-md {
+					color: $color-astro;
+				}
+			}
+		}
+	}
+}
+
+// Bottom Nav Tab
+.tabs {
+
+	&-ios, &-md {
+
+		.tabbar.show-tabbar {
+			background: $color-astro;
+		}
+
+		.tab-button {
+			transition: all .3s ease;
+			border-bottom: 2px solid transparent;
+		
+			&[aria-selected=true], &:hover:not(.disable-hover) {
+				border-bottom: 2px solid $color-white;
+
+				.tab-button-icon {
+					// top: -2px;
+					transform: translate(0,-2px);
+					color: $color-white !important;	
+				}
+			}
+
+			.tab-button-icon {
+				transform: translate(0,0);
+				transition: all .3s ease;
+				position: relative;
+
+			}
+
+			&-icon {
+				transition: all .3s ease;
+				color: rgba($color-white, .4) !important;
+				font-size: 22px !important;
+				height: 22px !important;
+			}
+		} 
+	}
+
+	&-md {
+		.tab-button {
+			&[aria-selected=true], &:hover:not(.disable-hover) {
+				.tab-button-icon {
+					top: 0px;
+				}
+			}
+		} 
+	}
+}
+
+// Card / Event list
+
+// Toolbar 
+
+ion-row {
+
+	.toolbar {
+
+		&-title {
+
+			&-ios, &-md {
+
+				text-transform: uppercase;
+				font-weight: 500 !important;
+				margin: 10px 0;
+
+			}
+
+		}
+
+	}
+
+}
+
+
+// Label
+.label {
+
+	&-ios {
+		margin: 0 !important;
+	}
+
+	&-md {
+		margin: 0 !important;
+	}
+}
+

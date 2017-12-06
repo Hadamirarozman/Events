@@ -20,6 +20,21 @@
  */
 var browser = require('cordova/platform');
 
+<<<<<<< HEAD
+function getPlatform () {
+    return 'browser';
+}
+
+function getModel () {
+    return getBrowserInfo(true);
+}
+
+function getVersion () {
+    return getBrowserInfo(false);
+}
+
+function getBrowserInfo (getModel) {
+=======
 function getPlatform() {
     return "browser";
 }
@@ -33,11 +48,18 @@ function getVersion() {
 }
 
 function getBrowserInfo(getModel) {
+>>>>>>> master
     var userAgent = navigator.userAgent;
     var returnVal = '';
     var offset;
 
+<<<<<<< HEAD
+    if ((offset = userAgent.indexOf('Edge')) !== -1) {
+        returnVal = (getModel) ? 'Edge' : userAgent.substring(offset + 5);
+    } else if ((offset = userAgent.indexOf('Chrome')) !== -1) {
+=======
     if ((offset = userAgent.indexOf('Chrome')) !== -1) {
+>>>>>>> master
         returnVal = (getModel) ? 'Chrome' : userAgent.substring(offset + 7);
     } else if ((offset = userAgent.indexOf('Safari')) !== -1) {
         if (getModel) {
@@ -64,7 +86,10 @@ function getBrowserInfo(getModel) {
     return returnVal;
 }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 module.exports = {
     getDeviceInfo: function (success, error) {
         setTimeout(function () {
@@ -73,10 +98,19 @@ module.exports = {
                 platform: getPlatform(),
                 model: getModel(),
                 version: getVersion(),
+<<<<<<< HEAD
+                uuid: null,
+                isVirtual: false
+=======
                 uuid: null
+>>>>>>> master
             });
         }, 0);
     }
 };
 
+<<<<<<< HEAD
+require('cordova/exec/proxy').add('Device', module.exports);
+=======
 require("cordova/exec/proxy").add("Device", module.exports);
+>>>>>>> master

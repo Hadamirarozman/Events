@@ -18,6 +18,16 @@
  * under the License.
  *
  */
+<<<<<<< HEAD
+// example UA String for Firefox OS
+// Mozilla/5.0 (Mobile; rv:26.0) Gecko/26.0 Firefox/26.0
+
+// UA parsing not recommended but currently this is the only way to get the Firefox OS version
+// https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
+
+// Should be replaced when better conversion to Firefox OS Version is available
+function convertVersionNumber (ver) {
+=======
 //example UA String for Firefox OS 
 //Mozilla/5.0 (Mobile; rv:26.0) Gecko/26.0 Firefox/26.0
 
@@ -26,6 +36,7 @@
 
 //Should be replaced when better conversion to Firefox OS Version is available
 function convertVersionNumber(ver) {
+>>>>>>> master
     var hashVersion = {
         '18.0': '1.0.1',
         '18.1': '1.1',
@@ -42,7 +53,11 @@ function convertVersionNumber(ver) {
     return (rver);
 
 }
+<<<<<<< HEAD
+function getVersion () {
+=======
 function getVersion() {
+>>>>>>> master
     if (navigator.userAgent.match(/(mobile|tablet)/i)) {
         var ffVersionArray = (navigator.userAgent.match(/Firefox\/([\d]+\.[\w]?\.?[\w]+)/));
         if (ffVersionArray.length === 2) {
@@ -52,7 +67,11 @@ function getVersion() {
     return (null);
 }
 
+<<<<<<< HEAD
+function getModel () {
+=======
 function getModel() {
+>>>>>>> master
     var uaArray = navigator.userAgent.split(/\s*[;)(]\s*/);
     if (navigator.userAgent.match(/(mobile|tablet)/i)) {
         if (uaArray.length === 5) {
@@ -74,4 +93,8 @@ module.exports = {
     }
 };
 
+<<<<<<< HEAD
+require('cordova/exec/proxy').add('Device', module.exports);
+=======
 require("cordova/exec/proxy").add("Device", module.exports);
+>>>>>>> master

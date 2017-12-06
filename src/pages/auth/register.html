@@ -8,8 +8,10 @@
         </ion-title>
     </ion-navbar>
 </ion-header>
+<ion-content padding class="auth-page">
 
-<ion-content>
+    <img src="assets/images/astroradio-sm.png" alt="">
+
     <ion-list>
 
         <ion-item>
@@ -22,19 +24,18 @@
             <ion-input [(ngModel)]="registrationUser.password" type="password"></ion-input>
         </ion-item>
 
-        <ion-item>
-            <button ion-button block outline large (click)="onRegister()">Sign up</button>
-        </ion-item>
-
+        
     </ion-list>
+
+    <button ion-button block color="astro" ((click)="onRegister()">Sign up</button>
 
     <ion-grid>
         <ion-row>
             <ion-col width-50>
-                <button ion-button clear small (click)="navToResendCode()">Resend Code</button>
+                <a (click)="navToResendCode()">Resend Code</a>
             </ion-col>
             <ion-col width-50>
-                <button ion-button clear small (click)="navToLogin()">Login</button>
+                <a (click)="navToLogin()">Login</a>
             </ion-col>
         </ion-row>
     </ion-grid>

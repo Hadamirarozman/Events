@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
+//import { Toast } from '@ionic-native/toast';
 
 //local storage 
 import { SQLite } from '@ionic-native/sqlite';
-
 
 //app pages and component
 import { MyApp } from './app.component';
@@ -16,7 +17,8 @@ import { DiscoverPage } from '../pages/discover/discover';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { PopupEventPage } from '../pages/popup-event/popup-event';
-
+import { SearchPage } from '../pages/search/search';
+import { SocialmediaPage } from '../pages/socialmedia/socialmedia';
 
 //aws cognito auth pages
 import {ControlPanelComponent} from "../pages/controlpanel/controlpanel";
@@ -45,7 +47,7 @@ import { NgCalendarModule } from 'ionic2-calendar';
 import { FilterProvider } from '../providers/filter/filter';
 import { Geolocation } from '@ionic-native/geolocation';
 import { HttpModule } from '@angular/http';
-
+import { IonicPageModule } from 'ionic-angular';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,10 @@ import { HttpModule } from '@angular/http';
     DiscoverPage,
     TabsPage,
     CalendarPage,
+    SearchPage,
     PopupEventPage,
+    SocialmediaPage,
+
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
@@ -72,6 +77,7 @@ import { HttpModule } from '@angular/http';
     HttpModule,
     NgCalendarModule,
     IonicModule.forRoot(MyApp),
+    IonicPageModule.forChild(EventlistPage),
   ],
 
 
@@ -86,7 +92,11 @@ import { HttpModule } from '@angular/http';
     DiscoverPage,
     PopupEventPage,
     TabsPage,
+    SearchPage,
     CalendarPage,
+    SocialmediaPage,
+
+
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
@@ -107,10 +117,12 @@ import { HttpModule } from '@angular/http';
     UserRegistrationService,
     EventsService,
     CognitoUtil,
+    SocialSharing,
     SQLite,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FilterProvider
+    FilterProvider,
+    //Toast
   ]
 })
 export class AppModule {}

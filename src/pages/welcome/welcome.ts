@@ -21,7 +21,11 @@ export class WelcomePage implements LoggedInCallback{
   public registerPage = RegisterComponent;
 
 
-  constructor( public navCtrl: NavController, public eventService: EventsService,public userService: UserLoginService ) {
+  constructor( 
+    public navCtrl: NavController, 
+    public eventService: EventsService,
+    public userService: UserLoginService ) {
+
 
     console.log('welcome');
     
