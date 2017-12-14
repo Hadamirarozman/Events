@@ -13,10 +13,23 @@
   <ion-list>
     <ion-item *ngFor="let event of events">
       <div class="event-img">
+        <span class="category">{{event.category}}</span>
         <img [src]="event.poster">
+        <ion-row class="event-footer">
+          <ion-col col-10>
+            <button ion-button clear small color="primary" icon-start (click)="presentLoadingText()">
+            <ion-icon name='pin'></ion-icon>
+            {{event.venue}}
+            </button>
+          </ion-col>
+          <ion-col col-2>
+            <button ion-button clear small color="primary" (click)="shareViaTwitter('Hello World', null, 'https://www.thepolyglotdeveloper.com')">
+              <ion-icon name='share-alt'></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
       </div>
       <div class="event-info">
-        <p>Venue : {{event.venue}}</p>
         <p>Date : {{event.eventdate}}</p>
       </div>
       <div class="event-detail">

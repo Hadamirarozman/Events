@@ -27,9 +27,9 @@ export class GetAccess {
 export class EventlistPage implements LoggedInCallback {
   rootPage: any;
   items: Array<{ title: string, page: any }> = [];
-
+  public category: string  ;
   public date: string;
-  public events;
+  public events = [];
   private todaydate = moment().format("YYYY-MM-DD");
   public getAccess: GetAccess = new GetAccess();
  
@@ -52,26 +52,20 @@ export class EventlistPage implements LoggedInCallback {
     
     
   {  
-    this.rootPage = EventlistPage;
-    this.items = [
-      {
-        title: 'Type One',
-        page: 'PopupEventPage'
-      },
-     
-    ];
-        this.platform = platform;
+    
+       
         console.log('home');
         console.log('date: ', this.todaydate);
         this.userService.isAuthenticated(this);
+        this.category = this.navParams.get('ParamCat');
         let headers = new Headers(
           {
               'Content-Type': 'application/json', 
               'Access-Control-Allow-Origin': '*',  
               'Authorization': this.getAccess.idToken
           });
-        this.http.get('https://g5mhbciwo5.execute-api.ap-southeast-1.amazonaws.com/stage/eventsbycategory?category=<category>' ,{headers:headers})
-        .map(res => res.json())
+          this.http.get('https://g5mhbciwo5.execute-api.ap-southeast-1.amazonaws.com/stage/eventsbycategory?category=' + this.category, {headers:headers})
+          .map(res => res.json())
         .subscribe(
             data => {
               this.events = data;
@@ -84,6 +78,10 @@ export class EventlistPage implements LoggedInCallback {
 
   }
   
+  
+
+
+
   
   isLoggedInCallback(message: string, isLoggedIn: boolean) {
     console.log("The user is logged in: " + isLoggedIn);
@@ -127,8 +125,7 @@ export class EventlistPage implements LoggedInCallback {
   addData() {
     this.navCtrl.push(PopupEventPage, {
       param1:"{{event.eventname}}" ,
-      param2:"{{event.venue}}", 
-      param3:"{{event.eventdate}}" 
+      
     })
   }
 

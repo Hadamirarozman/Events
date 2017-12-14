@@ -9,32 +9,11 @@
 <ion-content padding>
   <ion-list >
     <ion-item *ngFor="let event of events" no-lines>
-      <div class="event-img">
-        <img [src]="event.image">
+      <div [(ngModel)]="event.category">
+        <h2>
+          {{event.category}}
+        </h2>
       </div>
-      <div class="event-info">
-        <h2>{{event.categoryname}}</h2>
-      </div>
-      <ion-row>
-        <ion-col>
-          <button ion-button clear small color="primary" icon-start (click)="presentLoadingText()">
-          <ion-icon name='pin'></ion-icon>
-          Location
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button clear small color="primary" icon-start (click)="addData()">
-            <ion-icon name='paper-plane'></ion-icon>
-            Join 
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button clear small color="primary" icon-start (click)="shareViaTwitter('Hello World', null, 'https://www.thepolyglotdeveloper.com')">
-            <ion-icon name='share-alt'></ion-icon>
-            Share
-          </button>
-        </ion-col>
-      </ion-row>
     </ion-item>
   </ion-list>
 </ion-content>

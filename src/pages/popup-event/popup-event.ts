@@ -9,11 +9,12 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
   templateUrl: 'popup-event.html',
 })
 export class PopupEventPage {
+  
+  serviceData: string;
 
   event = { startTime: new Date().toISOString(), endTime: new Date().toISOString(), allDay: false };
   minDate = new Date().toISOString();
-  public firstparam;
-  public secondparam;
+
   
   data = { date:"", type:"", description:"", amount:0 };
   
@@ -27,18 +28,16 @@ export class PopupEventPage {
     
     {
   // Receiving data via navController
-    this.firstparam = navParams.get('firstpassed');
-    this.secondparam = navParams.get('secondpassed');
-        
+      this.navParams.get('param1'); 
+      this.navParams.get('param2');
     // Receiving data via Service
-    //this.serviceData = shareService.getUserName();
+  
 
     let preselectedDate = moment(this.navParams.get('selectedDay')).format();
     this.event.startTime = preselectedDate;
     this.event.endTime = preselectedDate;
-  
-      
   }
+ 
   cancel() {
     this.viewCtrl.dismiss();
   }
@@ -51,11 +50,9 @@ export class PopupEventPage {
       .then((db: SQLiteObject) => {
     
     
-        db.executeSql('create table danceMoves(name VARCHAR(32))', {})
+        db.executeSql('create table saving(name VARCHAR(32))', {})
           .then(() => console.log('Executed SQL'))
           .catch(e => console.log(e));
-    
-    
       })
       .catch(e => console.log(e));
   }

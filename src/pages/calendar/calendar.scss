@@ -59,7 +59,7 @@ page-calendar {
 
     &-bordered {
       border: 0 !important;
-      background: #f9f9f9 !important;
+      background: #f9f9f9;
       @include shadow(0);
       
       th, tr, td {
@@ -133,6 +133,29 @@ page-calendar {
     &-allday {
       &-table {
         border-top: 1px solid #ddd;
+        background: #eee;
+      }
+      &-label {
+        font-size: 1rem;
+        text-transform: uppercase;
+        line-height: 1.2;
+        padding-top: 0;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .dayview {
+    &-allday {
+      &-content-table {
+        // border-top: 1px solid #ddd;
+        background: #eee;
+      }
+      &-table {
+        // border-top: 1px solid #ddd;
         background: #eee;
       }
       &-label {

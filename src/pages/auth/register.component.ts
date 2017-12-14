@@ -29,6 +29,7 @@ export class RegisterComponent implements CognitoCallback {
     }
 
     onRegister() {
+        console.log('clicked');
         this.userRegistration.register(this.registrationUser, this);
     }
 

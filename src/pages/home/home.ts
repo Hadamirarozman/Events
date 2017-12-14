@@ -34,7 +34,7 @@ export class HomePage implements LoggedInCallback{
   public events;
   private todaydate = moment().format("YYYY-MM-DD");
   public getAccess: GetAccess = new GetAccess();
- 
+ param1: string= '';
 
   constructor( 
     private http: Http, 
@@ -81,9 +81,7 @@ export class HomePage implements LoggedInCallback{
         //this.nav.setRoot(TabsPage);
         this.cognitoUtil.getIdToken(new IdTokenCallback(this));
         console.log('token from dashboard here: ', this.getAccess.idToken);
-    }
-    
-    else{
+    }else{
       this.eventService.sendLoggedInEvent();
       //this.nav.setRoot(ControlPanelComponent);
       this.nav.setRoot(LoginComponent);
@@ -92,14 +90,18 @@ export class HomePage implements LoggedInCallback{
 
 
 //push popout join event
-  addData(event) {
+  addData() {
 
    
-    this.navCtrl.push(PopupEventPage,
-    {
-      firstpassed: "event.eventname",
-      secondpassed: "event.eventdate"
+    this.navCtrl.push(PopupEventPage, 
+      {
+
+
+        param1  :"{{event.eventname}}"
+
+
     });
+
   }
 
 

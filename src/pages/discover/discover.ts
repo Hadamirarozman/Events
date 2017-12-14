@@ -15,6 +15,7 @@ import 'rxjs/add/operator/map';
 //pages
 //import { EventlistPage } from "../../pages/eventlist/eventlist";
 import { LoginComponent } from "../../pages/auth/login.component";
+import { EventlistPage } from '../eventlist/eventlist';
 
 
 export class GetAccess {
@@ -25,8 +26,6 @@ export class GetAccess {
   templateUrl: 'discover.html',
 })
 export class DiscoverPage implements LoggedInCallback {
-
-  categoryUrl : string = 'https://g5mhbciwo5.execute-api.ap-southeast-1.amazonaws.com/stage/eventsbycategory?category=<category>';
   categories : any;
   items : any; 
   public date;
@@ -51,7 +50,7 @@ export class DiscoverPage implements LoggedInCallback {
   
   )
   {
-    this.loadCategories();
+   
     console.log('home');
     console.log('date: ', this.todaydate);
     this.userService.isAuthenticated(this);
@@ -76,35 +75,6 @@ export class DiscoverPage implements LoggedInCallback {
   
   }
 
-
-
-
-
-   //Our function to load categories
-  loadCategories() {
-      (
-      {
-          'Content-Type': 'application/json', 
-          'Access-Control-Allow-Origin': '*',  
-          'Authorization': this.getAccess.idToken
-      });
-    this.http.get( this.categoryUrl )
-      .map(res => res.json())
-      .subscribe(data => {
-        let categoryArray = {};
- 
-        data.forEach(function(item){
-          categoryArray[item.id] = item.name;
-        })
- 
-        this.categories = categoryArray;
- 
-        console.log(categoryArray);
-      });
-  }
- 
-
-
   //authentication token
 
 
@@ -123,6 +93,12 @@ export class DiscoverPage implements LoggedInCallback {
     }
 }
 
+
+push(category:any){
+  console.log('category parameter here: ', category);
+  this.navCtrl.push(EventlistPage, {ParamCat: category});
+
+}
   
   }export class IdTokenCallback implements Callback {
     constructor(public home: DiscoverPage) {

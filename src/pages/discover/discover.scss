@@ -51,6 +51,10 @@ page-discover {
       border-radius: 5px;
       position: relative;
       @include shadow(1);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
     &-title {
@@ -104,10 +108,10 @@ page-discover {
 
     &-image {
       img {
-        height: 150px;
+        height: 200px;
         object-fit: cover;
         @include ip6 {
-          height: 200px;
+          height: 250px;
         }
         @include ip6plus {
           height: 250px;

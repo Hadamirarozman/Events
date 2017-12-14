@@ -11,13 +11,13 @@
 
 <ion-content padding>
   
-    <ion-card (click) = "loadCategories()" *ngFor="let event of events" >
+    <ion-card *ngFor="let event of events" >
       <div class="card-image">
         <img [src]="event.image">
       </div>
-      <div class="event-info">
+      <div class="card-title">
         <h2>{{event.categoryname}}</h2>
-        <p>View More</p>
+        <p (click)= "push(event.categoryname)" >View More</p>
       </div>
     </ion-card>
   
